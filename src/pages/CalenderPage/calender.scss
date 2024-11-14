@@ -1,0 +1,30 @@
+.demo-app {
+  display: flex;
+  min-height: 100%;
+  font-size: 14px;
+  flex-direction: row;
+}
+
+.demo-app-sidebar {
+  width: 300px;
+  line-height: 1.5;
+  border-right: 1px solid #d3e2e8;
+}
+
+.demo-app-sidebar-section {
+  padding: 2em;
+}
+
+.demo-app-main {
+  flex-grow: 1;
+  padding: 3em;
+}
+
+@media (max-width: 776px) {
+  .demo-app {
+    flex-direction: column-reverse;
+  }
+  .demo-app-sidebar {
+    border: none;
+  }
+}
