@@ -4,7 +4,10 @@ import {
   MenuItem,
   Snackbar,
   SnackbarCloseReason,
+  Typography,
+  Divider,
 } from "@mui/material";
+import { PersonAddAlt1Outlined } from "@mui/icons-material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import React from "react";
@@ -64,9 +67,39 @@ export default function ProfileFormPage() {
     <Box
       component="form"
       onSubmit={handleSubmit(onSubmit)}
-      sx={{ display: "flex", flexDirection: "column", gap: 3, width: "95%" }}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 3,
+        width: "100%",
+        maxWidth: { xs: "95%", md: "760px" },
+        mx: "auto",
+        backgroundColor: "info.main",
+        borderRadius: "14px",
+        boxShadow: "rgb(0 0 0 / 8%) 0px 2px 12px",
+        p: { xs: 2.5, sm: 4 },
+      }}
     >
-      <Box sx={{ display: "flex", gap: 3 }}>
+      <Box sx={{ textAlign: "left" }}>
+        <Typography
+          variant="h5"
+          sx={{
+            fontWeight: 700,
+            color: "primary.main",
+            display: "flex",
+            alignItems: "center",
+            gap: 1,
+          }}
+        >
+          <PersonAddAlt1Outlined /> Create New User
+        </Typography>
+        <Typography sx={{ fontSize: "14px", opacity: 0.7, mt: 0.5 }}>
+          Fill in the details below to register a new team member.
+        </Typography>
+      </Box>
+      <Divider sx={{ borderColor: "rgba(128,128,128,0.2)" }} />
+
+      <Box sx={{ display: "flex", gap: 3, flexDirection: { xs: "column", sm: "row" } }}>
         <TextField
           label="First Name"
           {...register("firstName", { required: true, minLength: 3 })}
@@ -148,7 +181,19 @@ export default function ProfileFormPage() {
         <Button
           variant="contained"
           type="submit"
-          sx={{ textTransform: "capitalize" }}
+          sx={{
+            textTransform: "capitalize",
+            px: 4,
+            py: 1.1,
+            borderRadius: "10px",
+            fontWeight: 600,
+            boxShadow: "rgb(79 127 174 / 35%) 0px 4px 12px",
+            transition: "transform 0.15s ease, box-shadow 0.15s ease",
+            "&:hover": {
+              transform: "translateY(-2px)",
+              boxShadow: "rgb(79 127 174 / 45%) 0px 6px 16px",
+            },
+          }}
         >
           Create New User
         </Button>

@@ -5,7 +5,7 @@ import { geoFeatures } from "./world-countries";
 export default function GeographyChartPage() {
   const theme = useTheme();
   return (
-    <Box sx={{ width: "95%", height: "75vh" }}>
+    <Box sx={{ width: "100%", height: "100%", minHeight: { xs: "300px", sm: "70vh" } }}>
       <ResponsiveChoropleth
         data={data}
         features={geoFeatures.features}

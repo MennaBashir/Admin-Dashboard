@@ -1,6 +1,7 @@
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { rows } from "./dataManageTeam";
 import { Box, Typography, useTheme } from "@mui/material";
+import { getDataGridStyle } from "../../utils/dataGridStyle";
 import {
   AdminPanelSettingsOutlined,
   ManageAccountsOutlined,
@@ -64,11 +65,11 @@ const columns: GridColDef[] = [
             fontWeight: 500,
             justifyContent: "center",
             alignItems: "center",
-            p: "4px",
-            borderRadius: "4px",
+            py: "6px",
+            px: "8px",
+            borderRadius: "6px",
             mx: "auto",
-            mt: "10px",
-            width: "100px",
+            width: "110px",
             color: "#fff",
             backgroundColor:
               access === "admin"
@@ -97,25 +98,23 @@ export default function ManageTeamPage() {
   return (
     <Box
       sx={{
-        height: "auto",
-        width: "95%",
-       
+        width: "100%",
+        maxWidth: "95%",
+        mx: "auto",
       }}
     >
       <DataGrid
         rows={rows}
         columns={columns}
+        autoHeight
+        rowHeight={56}
+        columnHeaderHeight={56}
+        disableRowSelectionOnClick
         initialState={{
           pagination: { paginationModel: { pageSize: 10 } },
         }}
         pageSizeOptions={[10, 20, 50]}
-        sx={{
-          fontSize: "15px",
-          color: theme.palette.text.primary,
-          "& .MuiDataGrid-columnHeaders": {
-            fontSize: "16px",
-          },
-        }}
+        sx={getDataGridStyle(theme)}
       />
     </Box>
   );

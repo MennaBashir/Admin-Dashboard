@@ -104,17 +104,51 @@ let content: typeContent = {
 };
 
 function DemoPageContent() {
+  const ref = React.useRef<HTMLDivElement>(null);
+  const [widthKey, setWidthKey] = React.useState(0);
+
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let lastWidth = Math.round(el.getBoundingClientRect().width);
+    let raf = 0;
+    const observer = new ResizeObserver(() => {
+      const width = Math.round(el.getBoundingClientRect().width);
+      if (Math.abs(width - lastWidth) > 2) {
+        lastWidth = width;
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          setWidthKey((k) => k + 1);
+          window.dispatchEvent(new Event("resize"));
+        });
+      }
+    });
+    observer.observe(el);
+    return () => {
+      cancelAnimationFrame(raf);
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <Box
+      ref={ref}
       sx={{
-        py: 4,
+        py: { xs: 2, sm: 4 },
+        px: { xs: 1, sm: 0 },
+        width: "100%",
+        maxWidth: "100%",
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
+        alignItems: "stretch",
         textAlign: "center",
+        overflowX: "hidden",
+        boxSizing: "border-box",
       }}
     >
-      {content.component}
+      <Box key={widthKey} sx={{ width: "100%", maxWidth: "100%" }}>
+        {content.component}
+      </Box>
     </Box>
   );
 }

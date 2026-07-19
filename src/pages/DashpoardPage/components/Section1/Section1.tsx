@@ -17,15 +17,24 @@ export default function Section1() {
             key={el.id}
             sx={{
               display: "flex",
-              p: "15px",
+              px: "18px",
+              py: "22px",
+              minHeight: "150px",
               alignItems: "center",
-              justifyContent: "space-around",
-              boxShadow:"rgb(0 0 0 / 8%) 0px 1px 4px",
-              backgroundColor:"info.main",
-              borderRadius:"4px"
+              justifyContent: "space-between",
+              gap: "10px",
+              boxShadow: "rgb(0 0 0 / 8%) 0px 1px 4px",
+              backgroundColor: "info.main",
+              borderRadius: "10px",
+              transition:
+                "transform 0.2s ease, box-shadow 0.2s ease",
+              "&:hover": {
+                transform: "translateY(-3px)",
+                boxShadow: "rgb(0 0 0 / 14%) 0px 6px 18px",
+              },
             }}
           >
-            <Box sx={{ textAlign: "left", mr: "30px" }}>
+            <Box sx={{ textAlign: "left", mr: { xs: "10px", sm: "20px" }, minWidth: 0 }}>
               {el.id === "email" ? (
                 <MarkEmailReadOutlined />
               ) : el.id === "sales" ? (
@@ -38,7 +47,7 @@ export default function Section1() {
               <Typography>{el.quantity}</Typography>
               <Typography>{el.title}</Typography>
             </Box>
-            <Box sx={{ height: "120px", width: "100px", position: "relative" }}>
+            <Box sx={{ height: "120px", width: "100px", flexShrink: 0, position: "relative" }}>
               <PieChartComponent data={el.data} colorScheme={el.colorScheme} />
               <Typography
                 sx={{ position: "absolute", right: "30px", bottom: "18px" }}

@@ -1,5 +1,19 @@
 .sec1 {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
+
+  > * {
+    flex: 1 1 230px;
+    min-width: 230px;
+  }
+
+  @media (max-width: 600px) {
+    gap: 14px;
+
+    > * {
+      flex-basis: 100%;
+      min-width: 0;
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   DateSelectArg,
   EventApi,
@@ -9,6 +9,7 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import { useTheme } from "@mui/material";
 import "./calender.scss";
 interface SidebarProps {
   weekendsVisible: boolean;
@@ -25,6 +26,7 @@ export function createEventId() {
 }
 
 export default function CalendarPage() {
+  const theme = useTheme();
   const [weekendsVisible, setWeekendsVisible] = useState<boolean>(true);
   const [currentEvents, setCurrentEvents] = useState<EventApi[]>([]);
 
@@ -64,7 +66,20 @@ export default function CalendarPage() {
   }
 
   return (
-    <div className="demo-app">
+    <div
+      className="demo-app"
+      style={
+        {
+          "--cal-primary": theme.palette.primary.main,
+          "--cal-primary-dark": theme.palette.primary.dark,
+          "--cal-surface":
+            theme.palette.mode === "dark"
+              ? "rgba(255,255,255,0.03)"
+              : "#ffffff",
+          color: theme.palette.text.primary,
+        } as React.CSSProperties
+      }
+    >
       <Sidebar
         weekendsVisible={weekendsVisible}
         handleWeekendsToggle={handleWeekendsToggle}

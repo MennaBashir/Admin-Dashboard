@@ -47,8 +47,9 @@ export default function LineChartComponent() {
         },
         grid: {
           line: {
-            stroke: "#dddddd",
-            strokeWidth: 0,
+            stroke: theme.palette.mode === "dark" ? "#ffffff14" : "#00000012",
+            strokeWidth: 1,
+            strokeDasharray: "4 4",
           },
         },
         legends: {
@@ -128,6 +129,21 @@ export default function LineChartComponent() {
       }}
       yFormat=" >-.2f"
       curve="cardinal"
+      enableArea={true}
+      areaOpacity={0.12}
+      enableGridX={false}
+      enableGridY={true}
+      defs={[
+        {
+          id: "gradientArea",
+          type: "linearGradient",
+          colors: [
+            { offset: 0, color: "inherit", opacity: 0.4 },
+            { offset: 100, color: "inherit", opacity: 0 },
+          ],
+        },
+      ]}
+      fill={[{ match: "*", id: "gradientArea" }]}
       axisTop={null}
       axisRight={null}
       axisBottom={{

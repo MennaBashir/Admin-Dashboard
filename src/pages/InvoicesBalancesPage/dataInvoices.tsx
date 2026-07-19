@@ -31,6 +31,16 @@ export const columns: GridColDef[] = [
     resizable: false,
     align: "center",
     headerAlign: "center",
+    renderCell: ({ row: { cost } }) => (
+      <span
+        style={{
+          color: "#10c469",
+          fontWeight: 700,
+        }}
+      >
+        ${cost}
+      </span>
+    ),
   },
   {
     field: "phone",

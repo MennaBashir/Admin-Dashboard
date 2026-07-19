@@ -10,7 +10,10 @@ export default function BarChartComponent() {
       keys={["Spain", "France", "Germany"]}
       indexBy="year"
       margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
-      padding={0.3}
+      padding={0.32}
+      borderRadius={4}
+      enableGridY={true}
+      enableLabel={false}
       theme={{
         background: "transparent",
         text: {
@@ -49,8 +52,9 @@ export default function BarChartComponent() {
         },
         grid: {
           line: {
-            stroke: "#dddddd",
-            strokeWidth: 0,
+            stroke: theme.palette.mode === "dark" ? "#ffffff14" : "#00000012",
+            strokeWidth: 1,
+            strokeDasharray: "4 4",
           },
         },
         legends: {

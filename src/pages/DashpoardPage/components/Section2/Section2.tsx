@@ -15,11 +15,16 @@ export default function Section2() {
     >
       <Box
         sx={{
-          flex: 1,
+          flex: { md: 2, xs: 1 },
+          minWidth: 0,
           boxShadow: "rgb(0 0 0 / 8%) 0px 1px 4px",
           backgroundColor: "info.main",
-          borderRadius: "4px",
+          borderRadius: "8px",
           height: "420px",
+          display: "flex",
+          flexDirection: "column",
+          transition: "box-shadow 0.2s ease",
+          "&:hover": { boxShadow: "rgb(0 0 0 / 12%) 0px 4px 16px" },
         }}
       >
         <Typography
@@ -35,18 +40,23 @@ export default function Section2() {
         >
           Revenue Generated
         </Typography>
-        <Box sx={{ width: "95%", height: "420px", pb: "50px" }}>
+        <Box sx={{ width: "100%", flex: 1, minHeight: 0, pb: "10px" }}>
           <LineChartComponent />
         </Box>
       </Box>
       <Box
         sx={{
+          flex: { md: 1, xs: 1 },
+          minWidth: { md: "320px", xs: 0 },
+          width: { xs: "100%", md: "auto" },
           boxShadow: "rgb(0 0 0 / 8%) 0px 1px 4px",
           backgroundColor: "info.main",
-          borderRadius: "4px",
+          borderRadius: "8px",
           p: "20px",
           height: "420px",
           overflow: "auto",
+          transition: "box-shadow 0.2s ease",
+          "&:hover": { boxShadow: "rgb(0 0 0 / 12%) 0px 4px 16px" },
         }}
       >
         <Typography
@@ -70,23 +80,48 @@ export default function Section2() {
                 alignItems: "center",
                 gap: "10px",
                 textAlign: "left",
-                mb: "4px",
-                px: "10px",
-                pb: "2px",
+                mb: "6px",
+                px: "8px",
+                py: "10px",
+                borderRadius: "6px",
                 justifyContent: "space-between",
                 borderBottom: "1px solid #b3b3b34d",
+                transition: "background-color 0.15s ease",
+                "&:hover": { backgroundColor: "rgba(128,128,128,0.06)" },
               }}
             >
-              <Box>
-                <Typography sx={{ fontSize: "15px" }}>{el.user}</Typography>
-                <Typography sx={{ fontSize: "14px", color: "common.black" }}>
+              <Box sx={{ minWidth: 0, flex: 1 }}>
+                <Typography sx={{ fontSize: "15px", fontWeight: 600, color: "primary.main" }}>
+                  {el.user}
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: "13px",
+                    color: "common.black",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}
+                >
                   {el.txId}
                 </Typography>
               </Box>
-              <Typography sx={{ fontSize: "14px" }}>{el.date}</Typography>
+              <Typography sx={{ fontSize: "13px", flexShrink: 0, opacity: 0.85 }}>
+                {el.date}
+              </Typography>
               <Button
                 variant="contained"
-                sx={{ color: "#fff", width: "20px", height: "24px",backgroundColor:"#74b3e3" }}
+                sx={{
+                  color: "#fff",
+                  minWidth: "62px",
+                  height: "28px",
+                  flexShrink: 0,
+                  borderRadius: "6px",
+                  textTransform: "none",
+                  boxShadow: "none",
+                  backgroundColor: "#74b3e3",
+                  "&:hover": { backgroundColor: "#5a9fd4", boxShadow: "none" },
+                }}
                 size="small"
               >
                 ${el.cost}

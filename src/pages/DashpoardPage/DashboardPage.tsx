@@ -5,7 +5,16 @@ import Section4 from "./components/Section4/Section4";
 import "./dashboardStyle.scss";
 export default function DashboardPage() {
   return (
-    <main style={{ width: "100%", paddingLeft: "20px", paddingRight: "20px" }}>
+    <main
+      style={{
+        width: "100%",
+        maxWidth: "100%",
+        paddingLeft: "clamp(8px, 2vw, 20px)",
+        paddingRight: "clamp(8px, 2vw, 20px)",
+        boxSizing: "border-box",
+        overflowX: "hidden",
+      }}
+    >
       <Section1 />
       <Section2 />
       <Section3 />
